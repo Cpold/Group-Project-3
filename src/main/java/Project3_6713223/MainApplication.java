@@ -9,10 +9,17 @@
 package Project3_6713223;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
-public class MainApplication {
+public class MainApplication extends JFrame{
+    public static void main(String[] args) {
+        new MainApplication();
+    }
 
-    public static void main() {
-
+    public MainApplication(){
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 300);
+        setVisible(true);
     }
 }
