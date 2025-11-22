@@ -38,5 +38,16 @@ public class MainApplication extends JFrame{
         setLayout( new GridBagLayout() );
         add(StartButton, new GridBagConstraints());
         validate();
+
+                /*setTitle("Bakery Toaster Game");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        
+        gameBoard = new GameBoard();
+        add(gameBoard);
+        
+        setSize(MyConstants.WIDTH, MyConstants.HEIGHT);
+        setLocationRelativeTo(null);
+        setVisible(true);*/
     }
 }
