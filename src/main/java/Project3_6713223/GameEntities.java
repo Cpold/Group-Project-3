@@ -1,6 +1,6 @@
 /*
  * @author Rachapon - 6713247
- *         Ratchasin - 6713248
+ *         Ratchasin - 6713247
  *         Sayklang - 6713250
  *         Chayapol - 6713223
  *         Zabit - 6713116
@@ -11,7 +11,8 @@ package Project3_6713223;
 class Bread {
     public static final int RAW = 0, TOASTING = 1, TOASTED = 2;
     int state;
-    long toastTime;
+    private double progress = 0;    
+    private final double MAX_PROGRESS = 500;
     int jamType = -1;
     int toppingType = -1;
     
@@ -21,16 +22,36 @@ class Bread {
     
     void startToast() {
         state = TOASTING;
-        toastTime = System.currentTimeMillis();
+        progress = 0;
+    }
+    
+    void tick(boolean isBoosting) {
+        if (state != TOASTING) return;
+
+        if (isBoosting) {
+            progress += 5.0;
+        } else {
+            progress += 2.0;
+       
+        }
     }
     
     boolean isDone() {
         if (state != TOASTING) return false;
-        return System.currentTimeMillis() - toastTime >= 5000;
+        return progress >= MAX_PROGRESS;
     }
     
     void finishToast() {
         state = TOASTED;
+        progress = MAX_PROGRESS;
+    }
+    
+    public int getProgress() {
+        return (int) progress;
+    }
+    
+    public int getMaxProgress() {
+        return (int) MAX_PROGRESS;
     }
     
     void addJam(int type) {
@@ -48,6 +69,30 @@ class Bread {
     boolean hasTopping() {
         return toppingType != -1;
     }
+    
+     public String getMenuName() {
+        if (state != TOASTED) return "Raw Bread";
+        
+        String jamName = "";
+        String topName = "";
+        
+        // แปลง jamType (0,1,2) เป็นชื่อ
+        if (jamType == 0) jamName = "Chocolate";
+        else if (jamType == 1) jamName = "Thai Tea";
+        else if (jamType == 2) jamName = "Custard"; // สังขยา
+        else return "Plain Toast";
+
+        // แปลง toppingType (0,1,2) เป็นชื่อ
+        // 0=FoiThong(Banana?), 1=Chip, 2=Marshmallow 
+        // (อิงตามไฟล์รูป CUSFOI, CUSCHIP ใน Utilities)
+        if (toppingType == 0) topName = "Foi Thong"; 
+        else if (toppingType == 1) topName = "Choc Chip";
+        else if (toppingType == 2) topName = "Marshmallow";
+        else return jamName + " Toast";
+
+        return jamName + " " + topName + " Toast";
+    }
+    
 }
 
 // ===== TOAST =====
