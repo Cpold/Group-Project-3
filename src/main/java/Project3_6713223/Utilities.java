@@ -17,7 +17,17 @@ interface MyConstants {
     static final String FILE_GAME_BG     = PATH + "Game.jpg";
     static final String FILE_End_BG      = PATH + "End.jpg";
     static final String FILE_POL         = PATH + "PolFace.png";   
+    static final String FILE_START_SCENE_BG = PATH + "StartScene_Background.jpg";
+    static final String FILE_TUTORIAL_GUIDE = PATH + "BreadMakerGuide.jpg";
+    static final String FILE_BREAD_LOST = PATH + "bread_burnt.jpg";
+    static final String FILE_BREAD_WIN = PATH + "bread_master.jpg";
     
+    static final String BUTTON_START_IMG    = PATH + "button_start.png";
+    static final String BUTTON_TUTORIAL_IMG  = PATH + "button_tutorial.png";
+    static final String BUTTON_CREDITS_IMG  = PATH + "button_credits.png";
+    static final String BUTTON_EXIT_IMG     = PATH + "button_exit.png";
+    static final String BUTTON_VOLUME_IMG     = PATH + "button_volume.png";
+
     static final String PAT              = "src/main/java/Project3_6713223/resources/game/";
     static final String BG               = PAT + "cooking_background.jpg";
     static final String BREAD_RAW        = PAT + "breadraw.png";
