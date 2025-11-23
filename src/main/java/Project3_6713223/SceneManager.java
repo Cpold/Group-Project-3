@@ -66,7 +66,7 @@ public class SceneManager {
         mainFrame.getContentPane().removeAll();
         toggleVolumeIcon(false); // ซ่อน Volume Icon
         
-        mainFrame.setTitle("Restaurant Game - Game Over");
+        mainFrame.setTitle("Pang Ping - Game Over");
         endScene.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
         mainFrame.getContentPane().add(endScene);
         
@@ -93,33 +93,33 @@ public class SceneManager {
         
         switch (sceneName) {
             case "Menu":
-                mainFrame.setTitle("Restaurant Game - Main Menu");
+                mainFrame.setTitle("Pang Ping - Main Menu");
                 mainMenu.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
                 contentPane.add(mainMenu);
                 break;
             case "StartInput": // ฉากใส่ชื่อ
-                mainFrame.setTitle("Restaurant Game - Enter Name");
+                mainFrame.setTitle("Pang Ping - Enter Name");
                 startInputScene.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
                 contentPane.add(startInputScene);
                 startInputScene.revalidate();
                 startInputScene.repaint();
                 break;
             case "Difficulty": // ฉากเลือกความยาก
-                mainFrame.setTitle("Restaurant Game - Select Mode");
+                mainFrame.setTitle("Pang Ping - Select Mode");
                 difficultyScene.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
                 contentPane.add(difficultyScene);
                 difficultyScene.revalidate();
                 difficultyScene.repaint();
                 break;
             case "Music": // ฉากเลือกเพลง
-                mainFrame.setTitle("Restaurant Game - Select Music");
+                mainFrame.setTitle("Pang Ping - Select Music");
                 musicScene.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
                 contentPane.add(musicScene);
                 musicScene.revalidate();
                 musicScene.repaint();
                 break;
             case "Game":
-                mainFrame.setTitle("Restaurant Game - Gameplay");
+                mainFrame.setTitle("Pang Ping - Gameplay");
                 if (gameBoard == null) {
                     gameBoard = new GameBoard();
                 }
@@ -131,12 +131,12 @@ public class SceneManager {
                 // else showEndScene(false, currentPlayerName);
                 break;
             case "Credit": 
-                mainFrame.setTitle("Restaurant Game - Credits");
+                mainFrame.setTitle("Pang Ping - Credits");
                 creditScene.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
                 contentPane.add(creditScene);
                 break;
             case "Tutorial": 
-                mainFrame.setTitle("Restaurant Game - Tutorial Guide");
+                mainFrame.setTitle("Pang Ping - Tutorial Guide");
                 tutorialScene.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
                 contentPane.add(tutorialScene);
                 tutorialScene.revalidate();

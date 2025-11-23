@@ -32,7 +32,7 @@ public class MainApplication extends JFrame{
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(MyConstants.WIDTH, MyConstants.HEIGHT);
-        setTitle("Restaurant Game - Main Menu");
+        setTitle("Pang Ping - Main Menu");
         setResizable(false);
         setLocationRelativeTo(null);
         
