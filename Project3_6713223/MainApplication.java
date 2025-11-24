@@ -53,6 +53,13 @@ public class MainApplication extends JFrame{
         
         setupVolumeControl();
 
+        volumeSlider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                mainMenu.menuthemeSound.setVolume(volumeSlider.getValue()/ 100.0f);
+            }
+        });
+
         setVisible(true);
     }
     
