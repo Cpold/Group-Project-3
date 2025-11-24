@@ -19,7 +19,6 @@ public class CreditScene extends JPanel implements ActionListener {
     private JLabel backgroundLabel; // ใช้สำหรับแสดงภาพพื้นหลัง Food Truck
     
     // Path สำหรับรูปภาพพื้นหลังหลัก (Food Truck) และปุ่ม BACK
-    private final String FILE_CREDIT_BG = MyConstants.FILE_START_BG; 
     private final String FILE_BACK_BUTTON_IMG = MyConstants.FILE_BACK_BUTTON_IMG;
     
     // ข้อมูลรายชื่อสมาชิก (รวมนามสกุลไว้ในคอลัมน์ 1)
@@ -42,7 +41,7 @@ public class CreditScene extends JPanel implements ActionListener {
         
         // 2. สร้าง JLabel สำหรับรูปภาพพื้นหลัง Food Truck
         backgroundLabel = new JLabel();
-        MyImageIcon bgIcon = ImageLoader.loadImageIcon(FILE_CREDIT_BG);
+        MyImageIcon bgIcon = ImageLoader.loadImageIcon(MyConstants.FILE_CREDIT_BG);
         if (bgIcon != null) {
             backgroundLabel.setIcon(bgIcon.resize(MyConstants.WIDTH, MyConstants.HEIGHT));
         } else {
