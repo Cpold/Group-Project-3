@@ -16,7 +16,7 @@ public class MainMenuScene extends JPanel implements ActionListener {
     
     private JButton startButton, creditsButton, tutorialButton, exitButton; // ลบ settingButton
     private SceneManager sceneManager;
-    private MySoundEffect menuthemeSound;
+    public MySoundEffect menuthemeSound;
     
     // 1. แก้ไข: Constructor ต้องรับ SceneManager
     public MainMenuScene(SceneManager sceneManager) {

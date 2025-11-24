@@ -119,6 +119,41 @@ public class SceneManager {
                 musicScene.repaint();
                 break;
             case "Game":
+
+                getMainMenuScene().menuthemeSound.stop();
+                switch (MusicScene.musicGroup.getSelection().getActionCommand()) {
+                    case "Chill Jazz (Default)":
+                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.SONG1);
+                        getMainMenuScene().menuthemeSound.setVolume(0.2f);
+                        getMainMenuScene().menuthemeSound.playLoop();
+                        break;
+                    case "Upbeat Pop":
+                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.SONG1);
+                        getMainMenuScene().menuthemeSound.setVolume(0.2f);
+                        getMainMenuScene().menuthemeSound.playLoop();
+                        break;
+                    case "Lo-fi Beats":
+                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.SONG1);
+                        getMainMenuScene().menuthemeSound.setVolume(0.2f);
+                        getMainMenuScene().menuthemeSound.playLoop();
+                        break;
+                    case "Classic Rock":
+                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.SONG1);
+                        getMainMenuScene().menuthemeSound.setVolume(0.2f);
+                        getMainMenuScene().menuthemeSound.playLoop();
+                        break;
+                    case "8-bit Retro":
+                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.SONG1);
+                        getMainMenuScene().menuthemeSound.setVolume(0.2f);
+                        getMainMenuScene().menuthemeSound.playLoop();
+                        break;
+                    default:
+                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.SONG1);
+                        getMainMenuScene().menuthemeSound.setVolume(0.2f);
+                        getMainMenuScene().menuthemeSound.playLoop();
+                        break;
+                } 
+                
                 mainFrame.setTitle("Pang Ping - Gameplay");
                 if (gameBoard == null) {
                     gameBoard = new GameBoard(this);

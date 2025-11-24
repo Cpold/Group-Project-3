@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 public class MusicScene extends JPanel implements ActionListener {
     
     private SceneManager sceneManager;
-    private ButtonGroup musicGroup; 
+    public static ButtonGroup musicGroup; 
     private JButton backButton, startButton;
     private JLabel backgroundPanel;
     
