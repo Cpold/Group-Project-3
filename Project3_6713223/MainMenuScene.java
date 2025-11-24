@@ -24,7 +24,7 @@ public class MainMenuScene extends JPanel implements ActionListener {
         
         menuthemeSound = new MySoundEffect(MyConstants.SONG1); 
         menuthemeSound.playLoop();
-        menuthemeSound.setVolume(0.2f);
+        menuthemeSound.setVolume(0.5f);
         
         // 1. ตั้งค่าพื้นฐาน
         this.setOpaque(false);
