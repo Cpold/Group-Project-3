@@ -1,6 +1,6 @@
 /*
  * @author Rachapon - 6713247
- *         Ratchasin - 6713247
+ *         Ratchasin - 6713248
  *         Sayklang - 6713250
  *         Chayapol - 6713223
  *         Zabit - 6713116
@@ -128,9 +128,9 @@ class Toast {
 class Tray {
     Bread[] slots;
     int x, y;
-    int slotWidth = 70;
-    int slotHeight = 80;
-    int spacing = 20;
+    int slotWidth = 100;
+    int slotHeight = 100;
+    int spacing = 100;
     
     Tray(int x, int y) {
         this.x = x;

@@ -1,6 +1,6 @@
 /*
  * @author Rachapon - 6713247
- *         Ratchasin - 6713247
+ *         Ratchasin - 6713248
  *         Sayklang - 6713250
  *         Chayapol - 6713223
  *         Zabit - 6713116
@@ -95,7 +95,6 @@ class GameBoard extends JPanel implements Runnable,
         TEACFOIIcon = ImageLoader.loadImageIcon(MyConstants.TEACFOI);
         TEAMARIcon = ImageLoader.loadImageIcon(MyConstants.TEAMAR);
         CUSCHIPIcon = ImageLoader.loadImageIcon(MyConstants.CUSCHIP);
-        CUSFOIIcon = ImageLoader.loadImageIcon(MyConstants.CUSFOI);
         CUSMARIcon = ImageLoader.loadImageIcon(MyConstants.CUSMAR);
         uiScoreIcon = ImageLoader.loadImageIcon(MyConstants.UI_SCORE_BG);
         uiHeartIcon = ImageLoader.loadImageIcon(MyConstants.UI_HEART);
@@ -104,32 +103,32 @@ class GameBoard extends JPanel implements Runnable,
     }
 
     void createButtons() {
-        breadBtn = new BreadButton(300, 550, this);
+        breadBtn = new BreadButton(280, 525, this);
         breadBtn.setFocusable(false);
         add(breadBtn);
 
-        toastLBtn = new ToastClickButton(toastL, 480, 590, this);
+        toastLBtn = new ToastClickButton(toastL, 460, 540, this);
         toastLBtn.setFocusable(false);
-        toastRBtn = new ToastClickButton(toastR, 720, 590, this);
+        toastRBtn = new ToastClickButton(toastR, 690, 540, this);
         toastRBtn.setFocusable(false);
         add(toastLBtn);
         add(toastRBtn);
 
-        jamChoc = new JamButton(0, 1000, 340, this);
+        jamChoc = new JamButton(0, 1000, 360, this);
         jamChoc.setFocusable(false);
-        jamThai = new JamButton(1, 1050, 430, this);
+        jamThai = new JamButton(1, 1055, 430, this);
         jamThai.setFocusable(false);
-        jamCust = new JamButton(2, 1110, 515, this);
+        jamCust = new JamButton(2, 1110, 480, this);
         jamCust.setFocusable(false);
-        add(jamChoc);
-        add(jamThai);
         add(jamCust);
-
-        topFoi = new ToppingButton(0, 120, 380, this);
+        add(jamThai);
+        add(jamChoc);
+        
+        topFoi = new ToppingButton(0, 110, 380, this);
         topFoi.setFocusable(false);
-        topCho = new ToppingButton(1, 90, 460, this);
+        topCho = new ToppingButton(1, 85, 470, this);
         topCho.setFocusable(false);
-        topMar = new ToppingButton(2, 60, 550, this);
+        topMar = new ToppingButton(2, 45, 570, this);
         topMar.setFocusable(false);
         add(topFoi);
         add(topCho);
@@ -213,7 +212,6 @@ class GameBoard extends JPanel implements Runnable,
             delta += (currentTime - lastTime) / drawInterval;
             lastTime = currentTime;
 
-           
             if (delta >= 1) {
                 updateToasts();     
                 updateGameLogic();
@@ -235,8 +233,6 @@ class GameBoard extends JPanel implements Runnable,
         while (it.hasNext()) {
             Customer c = it.next();
 
-          
-           
             if (c.isAngryFinished()) {
                 it.remove(); 
                 lastLeaveTime = System.currentTimeMillis(); 
@@ -285,55 +281,30 @@ class GameBoard extends JPanel implements Runnable,
 
         if (b.toppingType != -1) {
             if (b.jamType == 0) {
-                if (b.toppingType == 0) {
-                    return CHOCFOIIcon;
-                }
-                if (b.toppingType == 1) {
-                    return CHOCHIPIcon;
-                }
-                if (b.toppingType == 2) {
-                    return CHOCMARIcon;
-                }
+                if (b.toppingType == 0) {return CHOCFOIIcon;}
+                if (b.toppingType == 1) {return CHOCHIPIcon;}
+                if (b.toppingType == 2) {return CHOCMARIcon;}
             }//foi 0 choc 1 mar2
             if (b.jamType == 1) {
-                if (b.toppingType == 0) {
-                    return TEACFOIIcon;
-                }
-                if (b.toppingType == 1) {
-                    return TEACHIPIcon;
-                }
-                if (b.toppingType == 2) {
-                    return TEAMARIcon;
-                }
+                if (b.toppingType == 0) {return TEACFOIIcon;}
+                if (b.toppingType == 1) {return TEACHIPIcon;}
+                if (b.toppingType == 2) {return TEAMARIcon;}
             }
             if (b.jamType == 2) {
-                if (b.toppingType == 0) {
-                    return CUSFOIIcon;
-                }
-                if (b.toppingType == 1) {
-                    return CUSCHIPIcon;
-                }
-                if (b.toppingType == 2) {
-                    return CUSMARIcon;
-                }
+                if (b.toppingType == 0) {return CUSFOIIcon;}
+                if (b.toppingType == 1) {return CUSCHIPIcon;}
+                if (b.toppingType == 2) {return CUSMARIcon;}
             }
         }
 
         if (b.jamType != -1) {
-            if (b.jamType == 0) {
-                return breadChocIcon;
-            }
-            if (b.jamType == 1) {
-                return breadThaiIcon;
-            }
-            if (b.jamType == 2) {
-                return breadCustIcon;
-            }
+            if (b.jamType == 0) {return breadChocIcon;}
+            if (b.jamType == 1) {return breadThaiIcon;}
+            if (b.jamType == 2) {return breadCustIcon;}
         }
-
-        if (b.state == Bread.TOASTED) {
-            return breadToastIcon;
-        }
+        
+        if (b.state == Bread.TOASTED) {return breadToastIcon;}
+        
         return breadRawIcon;
     }
 
@@ -373,7 +344,6 @@ class GameBoard extends JPanel implements Runnable,
                 g.drawImage(heartResized.getImage(), heartX + (i * (heartSize + 5)), heartY, null);
             }
         } else {
-
             g.setColor(Color.RED);
             g.drawString("Lives: " + lives, heartX, heartY + 20);
         }
@@ -468,7 +438,8 @@ class GameBoard extends JPanel implements Runnable,
         if (bread != null) {
             MyImageIcon icon = getBreadIcon(bread);
             if (icon != null) {
-                MyImageIcon resized = icon.resize(slotSize - 10, slotSize - 10);
+                //MyImageIcon resized = icon.resize(slotSize - 10, slotSize - 10);
+                MyImageIcon resized = icon.resize(slotSize, slotSize);
                 g.drawImage(resized.getImage(), x + 10, y + 10, null);
             }
         }
@@ -573,7 +544,7 @@ class GameBoard extends JPanel implements Runnable,
                 tray.addBread(draggingBread);
                 System.out.println("Bread returned to tray");
             }
-
+            
             isDragging = false;
             repaint();
         }
@@ -585,36 +556,25 @@ class GameBoard extends JPanel implements Runnable,
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
+    public void mouseClicked(MouseEvent e) {}
     @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
+    public void mouseEntered(MouseEvent e) {}
     @Override
-    public void mouseExited(MouseEvent e) {
-    }
-
+    public void mouseExited(MouseEvent e) {}
     @Override
-    public void mouseMoved(MouseEvent e) {
-    }
-
+    public void mouseMoved(MouseEvent e) {}
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_C) {
             isBoosting = true;
         }
     }
-
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_C) {
             isBoosting = false;
         }
     }
-
     @Override
-    public void keyTyped(KeyEvent e) {
-    }
+    public void keyTyped(KeyEvent e) {}
 }
