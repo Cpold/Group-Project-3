@@ -53,6 +53,7 @@ public class CreditScene extends JPanel implements ActionListener {
         backgroundLabel.setLayout(null); // ใช้ null layout สำหรับวาง Components ทับ
         this.add(backgroundLabel); 
 
+        /*
         // 3. สร้าง Panel สำหรับรายชื่อ (GridBagLayout)
         JPanel creditContentPanel = new JPanel(new GridBagLayout());
         creditContentPanel.setOpaque(false); // สำคัญ: ต้องโปร่งใสเพื่อเห็น Food Truck
@@ -85,7 +86,8 @@ public class CreditScene extends JPanel implements ActionListener {
         int panelHeight = 350;
         creditContentPanel.setBounds(MyConstants.WIDTH / 2 - panelWidth / 2, 200, panelWidth, panelHeight); 
         backgroundLabel.add(creditContentPanel);
-        
+        */
+       
         // 4. สร้างปุ่ม BACK (ใช้รูปภาพ)
         MyImageIcon backButtonIcon = ImageLoader.loadImageIcon(FILE_BACK_BUTTON_IMG);
         if (backButtonIcon != null) {

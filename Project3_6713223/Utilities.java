@@ -25,6 +25,7 @@ interface MyConstants {
     static final String FILE_BREAD_WIN = PATH + "bread_master.jpg";
     static final String FILE_DIFFICULTY_BG = PATH + "Difficulty_Background.jpg";
     static final String FILE_MUSIC_BG = PATH + "Music_Background.jpg";
+    static final String FILE_CREDIT_BG = PATH + "Credit_Background.jpg";
     
     static final String BUTTON_START_IMG    = PATH + "button_start.png";
     static final String BUTTON_TUTORIAL_IMG  = PATH + "button_tutorial.png";
