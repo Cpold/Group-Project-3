@@ -52,6 +52,7 @@ interface MyConstants {
     static final String BREAD_FOI = PAT + "bread_foithong.png";
     static final String BREAD_CHO = PAT + "bread_chochip.png";
     static final String BREAD_MAR = PAT + "bread_marshmallow.png";
+    static final String BREAD_BURN = PAT + "burn.png";
 
     static final String CHOCHIP = PAT + "ChocChip.png";
     static final String CHOCFOI = PAT + "ChocFoi.png";
@@ -66,18 +67,20 @@ interface MyConstants {
     static final int WIDTH = 1280;
     static final int HEIGHT = 720;
 
-    static final String CUSTOMER_1 = PATH + "customer/doctor.png";
-    static final String CUSTOMER_2 = PATH + "customer/Tae.png";
-    static final String CUSTOMER_3 = PATH + "customer/E3.png";
+    static final String CUSTOMER_1 = PATH + "customer/kn.png";
+    static final String CUSTOMER_2 = PATH + "customer/bit.png";
+    static final String CUSTOMER_3 = PATH + "customer/beem.png";
+    static final String CUSTOMER_4 = PATH + "customer/pol.png";
     static final String CUSTOMER_5 = PATH + "customer/1.png";
     static final String CUSTOMER_6 = PATH + "customer/2.png";
     static final String CUSTOMER_7 = PATH + "customer/3.png";
     static final String CUSTOMER_8 = PATH + "customer/4.png";
     static final String CUSTOMER_9 = PATH + "customer/5.png";
 
-    static final String CUS_ANGRY_1 = PATH +"customer/a/0.png";
-    static final String CUS_ANGRY_2 = PATH +"customer/a/6.png";
-    static final String CUS_ANGRY_3 = PATH +"customer/a/0.png";
+    static final String CUS_ANGRY_1 = PATH +"customer/a/N.png";
+    static final String CUS_ANGRY_2 = PATH +"customer/a/B.png";
+    static final String CUS_ANGRY_3 = PATH +"customer/a/BM.png";
+    static final String CUS_ANGRY_4 = PATH +"customer/a/P.png";
     static final String CUS_ANGRY_5 = PATH +"customer/a/1.png";
     static final String CUS_ANGRY_6 = PATH +"customer/a/2.png";
     static final String CUS_ANGRY_7 = PATH +"customer/a/3.png";
