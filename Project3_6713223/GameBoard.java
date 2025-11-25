@@ -411,7 +411,7 @@ class GameBoard extends JPanel implements Runnable,
 
        
             g.setFont(new Font("Arial", Font.BOLD, 30));
-            sceneManager.showEndScene(false, "koonpolz");
+            sceneManager.showEndScene(false, sceneManager.currentPlayerName);
         }
 
         if (isDragging && draggingBread != null) {
@@ -479,7 +479,6 @@ class GameBoard extends JPanel implements Runnable,
         g.drawRect(binX, binY, binSize, binSize);
     }
 
-    
     @Override
     public void mousePressed(MouseEvent e) {
         
@@ -512,17 +511,16 @@ class GameBoard extends JPanel implements Runnable,
                     System.out.println("Dragging bread from slot " + slotIndex);
                 }
             }
-        }
-               
+        }  
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-         if (isDragging) {
-        dragX = e.getX();      
-        dragY = e.getY();
+        if (isDragging) {
+            dragX = e.getX();      
+            dragY = e.getY();
         //repaint();
-    }
+        }
     }
 
     @Override
@@ -550,7 +548,7 @@ class GameBoard extends JPanel implements Runnable,
                             if (servedCount >= targetCustomers) {
                                 System.out.println("YOU WIN!");
                                 running = false;
-                                sceneManager.showEndScene(true, "koonpolz");
+                                sceneManager.showEndScene(true, sceneManager.currentPlayerName);
                             }
                             it.remove();
                         } else {
@@ -560,7 +558,7 @@ class GameBoard extends JPanel implements Runnable,
                             System.out.println("Wrong Order! Lives left: " + lives);
                             if (lives <= 0) {
                                 lives = 0;
-                                sceneManager.showEndScene(false, "koonpolz");
+                                sceneManager.showEndScene(false, sceneManager.currentPlayerName);
                                 running = false;
                                 System.out.println("GAME OVER: Out of lives!");
                             }
