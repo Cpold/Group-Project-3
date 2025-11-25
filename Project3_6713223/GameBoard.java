@@ -63,6 +63,8 @@ class GameBoard extends JPanel implements Runnable,
 
     private CopyOnWriteArrayList<Effect_Graphics> particles = new CopyOnWriteArrayList<>();
     private CopyOnWriteArrayList<FloatingText> texts = new CopyOnWriteArrayList<>();
+    
+    private String difficulty;
 
     public GameBoard(SceneManager sceneManager) {
         this.sceneManager = sceneManager;
@@ -74,7 +76,7 @@ class GameBoard extends JPanel implements Runnable,
         addMouseListener(this);
         addMouseMotionListener(this);
 
-        gameTimer = new GameTimer();
+        gameTimer = new GameTimer(sceneManager);
         toastL = new Toast(480, 590);
         toastR = new Toast(720, 590);
         tray = new Tray(600 - 60, 340 + 20);
@@ -83,6 +85,7 @@ class GameBoard extends JPanel implements Runnable,
 
         loadImages();
         createButtons();
+        setDifficulty(sceneManager.difficultyScene.difficultyList.getSelectedValue());
 
         running = true;
         thread = new Thread(this);
@@ -106,7 +109,7 @@ class GameBoard extends JPanel implements Runnable,
         tray.clear();
         customers.clear();
         customers.add(new Customer(550, 90));
-        gameTimer = new GameTimer();
+        gameTimer = new GameTimer(sceneManager);
     }
 
     public void stopGame() {
@@ -301,7 +304,7 @@ class GameBoard extends JPanel implements Runnable,
 
                 if (lives <= 0) {
                     lives = 0;
-                    sceneManager.showEndScene(false, "koonpolz");
+                    sceneManager.showEndScene(false, sceneManager.currentPlayerName);
                     running = false;
                 }
             }
@@ -490,7 +493,7 @@ class GameBoard extends JPanel implements Runnable,
             g.drawString(msg, (MyConstants.WIDTH - fm.stringWidth(msg)) / 2, MyConstants.HEIGHT / 2);
 
             g.setFont(new Font("Arial", Font.BOLD, 30));
-            sceneManager.showEndScene(false, "koonpolz");
+            sceneManager.showEndScene(false, sceneManager.currentPlayerName);
         }
 
         for (Effect_Graphics p : particles) {
@@ -860,7 +863,7 @@ class GameBoard extends JPanel implements Runnable,
                                 if (servedCount >= targetCustomers) {
                                     System.out.println("YOU WIN!");
                                     running = false;
-                                    sceneManager.showEndScene(true, "koonpolz");
+                                    sceneManager.showEndScene(true, sceneManager.currentPlayerName);
                                 }
                                 it.remove();
 
@@ -876,7 +879,7 @@ class GameBoard extends JPanel implements Runnable,
 
                                 if (lives <= 0) {
                                     lives = 0;
-                                    sceneManager.showEndScene(false, "koonpolz");
+                                    sceneManager.showEndScene(false, sceneManager.currentPlayerName);
                                     running = false;
                                     System.out.println("GAME OVER: Out of lives!");
                                 }
@@ -945,5 +948,28 @@ class GameBoard extends JPanel implements Runnable,
 
     @Override
     public void keyTyped(KeyEvent e) {
+    }
+    
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+        switch (difficulty.toLowerCase()) {
+            case "very easy":
+                this.targetCustomers = 5;
+                break;
+            case "easy":
+                this.targetCustomers = 6;
+                break;
+            case "normal":
+                this.targetCustomers = 7;
+                break;
+            case "hard":
+                this.targetCustomers = 8;
+                break;
+            case "very hard":
+                this.targetCustomers = 6;
+                break;
+            default:
+                this.targetCustomers = 5;
+        }
     }
 }

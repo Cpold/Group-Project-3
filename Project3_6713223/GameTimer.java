@@ -22,19 +22,19 @@ public class GameTimer {
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
         switch (difficulty.toLowerCase()) {
-            case "easy":
+            case "very easy":
                 this.timeLimit = 180;
                 break;
-            case "normal":
+            case "easy":
                 this.timeLimit = 120;  
                 break;
-            case "medium":
+            case "normal":
                 this.timeLimit = 90;  
                 break;
             case "hard":
                 this.timeLimit = 60; 
                 break;
-            case "chef":
+            case "very hard":
                 this.timeLimit = 30;  
                 break;
             default:
