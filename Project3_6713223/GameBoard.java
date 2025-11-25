@@ -232,7 +232,7 @@ class GameBoard extends JPanel implements Runnable,
     @Override //SMOOT RUM I DONT KNOW WHY
     public void run() {
         // กำหนดความเร็วเกมที่ 60 FPS (Frames Per Second)
-        double drawInterval = 1000000000 / 60;
+        double drawInterval = 1000000000 / 120;
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
@@ -411,7 +411,7 @@ class GameBoard extends JPanel implements Runnable,
 
        
             g.setFont(new Font("Arial", Font.BOLD, 30));
-            sceneManager.showEndScene(false, sceneManager.currentPlayerName);
+            sceneManager.showEndScene(false, "koonpolz");
         }
 
         if (isDragging && draggingBread != null) {
@@ -479,8 +479,10 @@ class GameBoard extends JPanel implements Runnable,
         g.drawRect(binX, binY, binSize, binSize);
     }
 
+    
     @Override
     public void mousePressed(MouseEvent e) {
+        
         int x = e.getX();
         int y = e.getY();
 
@@ -511,15 +513,16 @@ class GameBoard extends JPanel implements Runnable,
                 }
             }
         }
+               
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (isDragging) {
-            dragX = e.getX();
-            dragY = e.getY();
-            repaint();
-        }
+         if (isDragging) {
+        dragX = e.getX();      
+        dragY = e.getY();
+        //repaint();
+    }
     }
 
     @Override
@@ -547,7 +550,7 @@ class GameBoard extends JPanel implements Runnable,
                             if (servedCount >= targetCustomers) {
                                 System.out.println("YOU WIN!");
                                 running = false;
-                                sceneManager.showEndScene(true, sceneManager.currentPlayerName);
+                                sceneManager.showEndScene(true, "koonpolz");
                             }
                             it.remove();
                         } else {
@@ -557,7 +560,7 @@ class GameBoard extends JPanel implements Runnable,
                             System.out.println("Wrong Order! Lives left: " + lives);
                             if (lives <= 0) {
                                 lives = 0;
-                                sceneManager.showEndScene(false, sceneManager.currentPlayerName);
+                                sceneManager.showEndScene(false, "koonpolz");
                                 running = false;
                                 System.out.println("GAME OVER: Out of lives!");
                             }
@@ -573,9 +576,9 @@ class GameBoard extends JPanel implements Runnable,
                 tray.addBread(draggingBread);
                 System.out.println("Bread returned to tray");
             }
-            
             isDragging = false;
             repaint();
+        
         }
     }
 
@@ -583,7 +586,7 @@ class GameBoard extends JPanel implements Runnable,
         return x > binX && x < binX + binSize
                 && y > binY && y < binY + binSize;
     }
-
+       
     
     @Override
     public void mouseClicked(MouseEvent e) {}
