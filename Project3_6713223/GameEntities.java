@@ -9,15 +9,30 @@ package Project3_6713223;
 
 // ===== BREAD =====
 class Bread {
-    public static final int RAW = 0, TOASTING = 1, TOASTED = 2;
+    public static final int RAW = 0, TOASTING = 1, TOASTED = 2, BURNT = 3;
     int state;
     private double progress = 0;    
-    private final double MAX_PROGRESS = 500;
+    private final double MAX_PROGRESS = 500;  
+    private final double BURNT_LIMIT = 1000;  
     int jamType = -1;
     int toppingType = -1;
+    public float scale = 1.0f;
     
     public Bread() {
         this.state = RAW;
+    }
+    
+    public void playPopAnimation() {
+        this.scale = 1.3f; 
+    }
+    
+    public void updateAnimation() {
+        if (this.scale > 1.0f) {
+            this.scale -= 0.05f;
+            if (this.scale < 1.0f) {
+                this.scale = 1.0f;
+            }
+        }
     }
     
     void startToast() {
@@ -26,19 +41,29 @@ class Bread {
     }
     
     void tick(boolean isBoosting) {
-        if (state != TOASTING) return;
+        
+        if (state != TOASTING && state != TOASTED) return;
+        
+        if (state == BURNT) return;
 
         if (isBoosting) {
             progress += 5.0;
         } else {
             progress += 2.0;
-       
+        }
+ 
+        if (state == TOASTING && progress >= MAX_PROGRESS) {
+            state = TOASTED; 
+        }
+               
+        if (progress >= BURNT_LIMIT) {
+            state = BURNT;
+            progress = BURNT_LIMIT; 
         }
     }
     
-    boolean isDone() {
-        if (state != TOASTING) return false;
-        return progress >= MAX_PROGRESS;
+   boolean isDone() {
+        return state == TOASTED || state == BURNT;
     }
     
     void finishToast() {
@@ -70,9 +95,14 @@ class Bread {
         return toppingType != -1;
     }
     
+    public int getBurntLimit() {
+        return (int) BURNT_LIMIT;
+    }
+    
      public String getMenuName() {
+         
         if (state != TOASTED) return "Raw Bread";
-        
+        if (state == BURNT) return "Burnt Toast";
         String jamName = "";
         String topName = "";
         
