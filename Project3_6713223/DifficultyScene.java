@@ -86,23 +86,21 @@ public class DifficultyScene extends JPanel implements ActionListener {
         // JList Position: (Y / 2 - 70)
         int listWidth = 350;
         int listHeight = 250;
-        scrollPane.setBounds(MyConstants.WIDTH / 2 - 130, MyConstants.HEIGHT / 2 - 70, listWidth, listHeight); 
+        scrollPane.setBounds(MyConstants.WIDTH / 2 - 175, MyConstants.HEIGHT / 2 - 70, listWidth, listHeight); 
         backgroundPanel.add(scrollPane);
 
         // 3. สร้างปุ่ม BACK และ NEXT (ล่องหน)
         
         // 3.1 ปุ่ม BACK
-        backButton = createInvisibleButton("", 150, 70); 
+        backButton = createStyledButton("BACK", 150, 50);
         backButton.addActionListener(this);
-        // 🛠️ ปรับตำแหน่ง BACK: X ขยับขวา 5px (จาก -290 เป็น -285), Y ขยับขึ้น 7px (จาก +235 เป็น +228)
-        backButton.setBounds(MyConstants.WIDTH / 2 - 150, MyConstants.HEIGHT / 2 + 205, 150, 70); 
+        backButton.setBounds(50, MyConstants.HEIGHT - 120, 150, 50);
         backgroundPanel.add(backButton);
         
-        // 3.2 ปุ่ม NEXT
-        nextButton = createInvisibleButton("", 150, 70); 
+        // ปุ่ม START (เพื่อเริ่มเกมจริง)
+        nextButton = createStyledButton("NEXT", 150, 50);
         nextButton.addActionListener(this);
-        // 🛠️ ปรับตำแหน่ง NEXT: Y ขยับขึ้น 7px (จาก +235 เป็น +228)
-        nextButton.setBounds(MyConstants.WIDTH / 2 + 140, MyConstants.HEIGHT / 2 + 205, 150, 70); 
+        nextButton.setBounds(MyConstants.WIDTH - 200, MyConstants.HEIGHT - 120, 150, 50);
         backgroundPanel.add(nextButton);
     }
     
@@ -117,6 +115,18 @@ public class DifficultyScene extends JPanel implements ActionListener {
         btn.setFocusPainted(false);
         return btn;
     }
+    private JButton createStyledButton(String text, int width, int height) {
+        JButton btn = new JButton(text);
+        btn.setFont(new Font("Arial", Font.BOLD, 24));
+        btn.setPreferredSize(new Dimension(width, height));
+        btn.setForeground(Color.WHITE); 
+        btn.setBackground(new Color(139, 69, 19)); 
+        btn.setOpaque(true);
+        btn.setBorderPainted(false);
+        btn.setFocusPainted(false);
+        return btn;
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

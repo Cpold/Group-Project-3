@@ -21,7 +21,6 @@ public class StartScene extends JPanel implements ActionListener {
     
     // Path สำหรับรูปภาพพื้นหลัง (กรอบไม้) และปุ่ม BACK
     private final String FILE_FRAME_BG = MyConstants.FILE_START_SCENE_BG; 
-    private final String FILE_BACK_BUTTON_IMG = MyConstants.FILE_BACK_BUTTON_IMG;
     
     public StartScene(SceneManager sceneManager) {
         this.sceneManager = sceneManager;
@@ -68,25 +67,11 @@ public class StartScene extends JPanel implements ActionListener {
         backgroundPanel.add(confirmButton); 
         
         // 5. สร้างปุ่ม BACK (ใช้รูปภาพ)
-        MyImageIcon backButtonIcon = ImageLoader.loadImageIcon(FILE_BACK_BUTTON_IMG);
-        if (backButtonIcon != null) {
-            backButton = new JButton(backButtonIcon.resize(150, 70));
-            // ตั้งค่าปุ่มให้แสดงผลรูปภาพและลบขอบ
-            backButton.setOpaque(false);
-            backButton.setContentAreaFilled(false);
-            backButton.setBorderPainted(false);
-            backButton.setFocusPainted(false);
-        } else {
-            // กรณีโหลดรูปภาพไม่สำเร็จ ให้ใช้ปุ่มข้อความปกติ
-            backButton = new JButton("BACK");
-            backButton.setFont(new Font("Arial", Font.BOLD, 28));
-        }
-        
-        // ตำแหน่ง BACK: มุมล่างซ้าย (ตามตำแหน่งที่เคยใช้ใน Tutorial Scene)
-        // Y = MyConstants.HEIGHT - 70 (ความสูงปุ่ม) - 30 (padding)
-        backButton.setBounds(20, MyConstants.HEIGHT - 70 - 45, 150, 70); 
+        backButton = createStyledButton("BACK", 150, 50);
         backButton.addActionListener(this);
+        backButton.setBounds(50, MyConstants.HEIGHT - 120, 150, 50);
         backgroundPanel.add(backButton);
+       
     }
     
     private JButton createInvisibleButton(String text, int width, int height) {
@@ -97,6 +82,18 @@ public class StartScene extends JPanel implements ActionListener {
         btn.setOpaque(false); 
         btn.setContentAreaFilled(false); 
         btn.setBorderPainted(false); 
+        btn.setFocusPainted(false);
+        return btn;
+    }
+    
+    private JButton createStyledButton(String text, int width, int height) {
+        JButton btn = new JButton(text);
+        btn.setFont(new Font("Arial", Font.BOLD, 24));
+        btn.setPreferredSize(new Dimension(width, height));
+        btn.setForeground(Color.WHITE); 
+        btn.setBackground(new Color(139, 69, 19)); 
+        btn.setOpaque(true);
+        btn.setBorderPainted(false);
         btn.setFocusPainted(false);
         return btn;
     }

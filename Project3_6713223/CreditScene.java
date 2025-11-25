@@ -19,7 +19,6 @@ public class CreditScene extends JPanel implements ActionListener {
     private JLabel backgroundLabel; // ใช้สำหรับแสดงภาพพื้นหลัง Food Truck
     
     // Path สำหรับรูปภาพพื้นหลังหลัก (Food Truck) และปุ่ม BACK
-    private final String FILE_BACK_BUTTON_IMG = MyConstants.FILE_BACK_BUTTON_IMG;
     
     // ข้อมูลรายชื่อสมาชิก (รวมนามสกุลไว้ในคอลัมน์ 1)
     private final String[][] members = {
@@ -88,23 +87,23 @@ public class CreditScene extends JPanel implements ActionListener {
         */
        
         // 4. สร้างปุ่ม BACK (ใช้รูปภาพ)
-        MyImageIcon backButtonIcon = ImageLoader.loadImageIcon(FILE_BACK_BUTTON_IMG);
-        if (backButtonIcon != null) {
-            backButton = new JButton(backButtonIcon.resize(150, 70));
-            backButton.setOpaque(false);
-            backButton.setContentAreaFilled(false);
-            backButton.setBorderPainted(false);
-            backButton.setFocusPainted(false);
-        } else {
-            backButton = new JButton("BACK");
-            backButton.setFont(new Font("Arial", Font.BOLD, 28));
-        }
-        
-        // ตำแหน่ง BACK: มุมล่างซ้าย
-        backButton.setBounds(20, MyConstants.HEIGHT - 70 - 45, 150, 70); 
+        backButton = createStyledButton("BACK", 150, 50);
         backButton.addActionListener(this);
+        backButton.setBounds(50, MyConstants.HEIGHT - 120, 150, 50);
         backgroundLabel.add(backButton);
     }
+     private JButton createStyledButton(String text, int width, int height) {
+        JButton btn = new JButton(text);
+        btn.setFont(new Font("Arial", Font.BOLD, 24));
+        btn.setPreferredSize(new Dimension(width, height));
+        btn.setForeground(Color.WHITE); 
+        btn.setBackground(new Color(139, 69, 19)); 
+        btn.setOpaque(true);
+        btn.setBorderPainted(false);
+        btn.setFocusPainted(false);
+        return btn;
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

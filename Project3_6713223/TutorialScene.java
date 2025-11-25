@@ -17,7 +17,6 @@ public class TutorialScene extends JPanel implements ActionListener {
     private SceneManager sceneManager;
     private JLabel backgroundPanel;
     private JButton backButton;
-    private JButton readyButton; // Assuming readyButton still exists for "READY TO EAT!"
 
     private final String FILE_TUTORIAL_GUIDE = MyConstants.PATH + "BreadMakerGuide.jpg"; 
 
@@ -42,45 +41,29 @@ public class TutorialScene extends JPanel implements ActionListener {
         this.add(backgroundPanel);
 
         // 2. ปุ่ม BACK (ใช้รูปภาพและย้ายไปมุมล่างซ้าย)
-        MyImageIcon backButtonIcon = ImageLoader.loadImageIcon(MyConstants.FILE_BACK_BUTTON_IMG);
-        if (backButtonIcon != null) {
-            backButton = new JButton(backButtonIcon.resize(150, 70));
-            backButton.setOpaque(false);
-            backButton.setContentAreaFilled(false);
-            backButton.setBorderPainted(false);
-            backButton.setFocusPainted(false);
-        } else {
-            backButton = new JButton("BACK");
-            backButton.setFont(new Font("Arial", Font.BOLD, 28));
-        }
-        // 🛠️ ปรับตำแหน่ง: เลื่อนขึ้น 10px (Y: -30 instead of -20)
-        backButton.setBounds(20, MyConstants.HEIGHT - 70 - 45, 150, 70); 
+              backButton = createStyledButton("BACK", 150, 50);
         backButton.addActionListener(this);
+        backButton.setBounds(50, MyConstants.HEIGHT - 120, 150, 50);
         backgroundPanel.add(backButton);
         
-        // 3. สร้างปุ่ม READY TO EAT! (ล่องหน)
-        readyButton = createInvisibleButton("", 300, 60); 
-        readyButton.addActionListener(this);
-        // ตำแหน่ง: ตรงกลางด้านล่างของ Guide Frame ในรูปภาพ (ใช้ค่าเดิม)
-        readyButton.setBounds(MyConstants.WIDTH / 2 - 150, MyConstants.HEIGHT / 2 + 195, 300, 60); 
-        backgroundPanel.add(readyButton);
     }
-    
-    private JButton createInvisibleButton(String text, int width, int height) {
+    private JButton createStyledButton(String text, int width, int height) {
         JButton btn = new JButton(text);
-        btn.setFont(new Font("Arial", Font.BOLD, 28)); 
+        btn.setFont(new Font("Arial", Font.BOLD, 24));
         btn.setPreferredSize(new Dimension(width, height));
-        btn.setOpaque(false); 
-        btn.setContentAreaFilled(false); 
-        btn.setBorderPainted(false); 
+        btn.setForeground(Color.WHITE); 
+        btn.setBackground(new Color(139, 69, 19)); 
+        btn.setOpaque(true);
+        btn.setBorderPainted(false);
         btn.setFocusPainted(false);
         return btn;
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
         // Logics based on previous requests (BACK and READY TO EAT!)
-        if (e.getSource() == backButton || e.getSource() == readyButton) {
+        if (e.getSource() == backButton ) {
             sceneManager.switchToScene("Menu"); 
         }
     }

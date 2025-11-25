@@ -43,19 +43,16 @@ public class MusicScene extends JPanel implements ActionListener {
         this.add(backgroundPanel); 
 
         
-        // Title "SELECT MUSIC"
-        JLabel titleLabel = new JLabel("SELECT MUSIC", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 60));
-        titleLabel.setForeground(Color.BLACK);
-        titleLabel.setBounds(MyConstants.WIDTH / 2 - 300, 150, 600, 70);
-        backgroundPanel.add(titleLabel);
-        
         // Panel สำหรับรวม JRadioButton
         JPanel radioPanel = setupRadioButtons();
-        // จัดวางให้อยู่กึ่งกลางหน้าจอ (ใต้ Title)
-        int panelWidth = 300;
-        int panelHeight = 250;
-        radioPanel.setBounds(MyConstants.WIDTH / 2 - panelWidth / 2, 250, panelWidth, panelHeight);
+        
+        // กำหนดขนาด Panel
+        // 🌟 แก้ไข: เพิ่มความกว้างเพื่อให้พอดีกับข้อความ "Chill Jazz (Default)" 🌟
+        int panelWidth = 450; 
+        int panelHeight = 300; 
+        
+        // 🌟 โค้ดที่แก้ไข: นำค่าชดเชย +30 ออก เพื่อให้ Panel ที่กว้างขึ้นอยู่กึ่งกลางอีกครั้ง (200 คือ Y ที่ถูกเลื่อนขึ้น)
+        radioPanel.setBounds(MyConstants.WIDTH / 2 - panelWidth / 2 + 120, 200, panelWidth, panelHeight); 
         backgroundPanel.add(radioPanel);
         
         // ปุ่ม BACK
@@ -73,16 +70,19 @@ public class MusicScene extends JPanel implements ActionListener {
     
     private JPanel setupRadioButtons() {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(musicTitles.length, 1, 0, 15)); // 5 rows, 1 column, 15px spacing
+        // เพิ่มระยะห่างแนวตั้ง (vgap) เป็น 30 พิกเซล
+        panel.setLayout(new GridLayout(musicTitles.length, 1, 0, 30)); 
         panel.setOpaque(false);
         
         musicGroup = new ButtonGroup();
         
         for (int i = 0; i < musicTitles.length; i++) {
             JRadioButton radioBtn = new JRadioButton(musicTitles[i]);
-            radioBtn.setFont(new Font("Arial", Font.PLAIN, 24));
+            // 🌟 NOTE: ปรับ Font.BOLD เป็น Font.PLAIN ถ้าต้องการให้ดูเหมือนในภาพ แต่ใช้ 30
+            // เนื่องจากคุณส่งโค้ดที่ใช้ Font.BOLD, 30 มา ผมจึงรักษาส่วนนี้ไว้
+            radioBtn.setFont(new Font("Arial", Font.BOLD, 30));
             radioBtn.setOpaque(false);
-            radioBtn.setForeground(Color.BLACK);
+            radioBtn.setForeground(Color.WHITE);
             radioBtn.setActionCommand(musicTitles[i]); // กำหนดคำสั่ง
             
             if (i == 0) {

@@ -14,7 +14,7 @@ public class GameTimer {
     private boolean isTimeUp;
     private String difficulty;
 
-    public GameTimer(SceneManger s) {
+    public GameTimer(SceneManager s) {
         // ค่าเริ่มต้น
         setDifficulty(s.difficultyScene.difficultyList.getSelectedValue());
     }
