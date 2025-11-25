@@ -77,7 +77,7 @@ public class EndScene extends JPanel implements ActionListener {
 
     private void setupContent() {
         if (isWin) {
-            JLabel titleLabel = new JLabel(playerName, SwingConstants.CENTER);
+            JLabel titleLabel = new JLabel(playerName + " Time left: " + sceneManager.gameBoard.gameTimer.getTimeRemaining(), SwingConstants.CENTER);
             titleLabel.setFont(new Font("Arial", Font.BOLD, 32));
             titleLabel.setForeground(Color.BLACK);
             titleLabel.setBounds(MyConstants.WIDTH / 2 - 175, 325, 600, 70);

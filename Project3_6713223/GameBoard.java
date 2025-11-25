@@ -43,7 +43,7 @@ class GameBoard extends JPanel implements Runnable,
     private ToppingButton topFoi, topCho, topMar;
     private ToastClickButton toastLBtn, toastRBtn;
 
-    private GameTimer gameTimer;
+    public GameTimer gameTimer;
 
     private Bread draggingBread;
     private int dragX, dragY;

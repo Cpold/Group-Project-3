@@ -16,7 +16,7 @@ public class SceneManager {
     
     private JFrame mainFrame;
     private MainMenuScene mainMenu;
-    private GameBoard gameBoard;
+    public GameBoard gameBoard;
     private CreditScene creditScene;
     private StartScene startInputScene; 
     private DifficultyScene difficultyScene;
