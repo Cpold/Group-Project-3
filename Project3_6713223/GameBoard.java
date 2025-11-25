@@ -63,7 +63,7 @@ class GameBoard extends JPanel implements Runnable,
         addMouseListener(this);
         addMouseMotionListener(this);
 
-        gameTimer = new GameTimer();
+        gameTimer = new GameTimer(sceneManager);
         toastL = new Toast(480, 590);
         toastR = new Toast(720, 590);
         tray = new Tray(600 - 60, 340 + 20);
@@ -95,7 +95,7 @@ class GameBoard extends JPanel implements Runnable,
     tray.clear();
     customers.clear();
     customers.add(new Customer(550, 90));
-    gameTimer = new GameTimer();
+    gameTimer = new GameTimer(sceneManager);
 }
     public void stopGame() {
     running = false;

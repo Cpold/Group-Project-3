@@ -19,7 +19,7 @@ public class SceneManager {
     public GameBoard gameBoard;
     private CreditScene creditScene;
     private StartScene startInputScene; 
-    private DifficultyScene difficultyScene;
+    public DifficultyScene difficultyScene;
     private MusicScene musicScene;
     private TutorialScene tutorialScene;
     

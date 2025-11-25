@@ -19,7 +19,7 @@ public class DifficultyScene extends JPanel implements ActionListener {
     private SceneManager sceneManager;
     private JLabel backgroundPanel;
     private JButton backButton, nextButton;
-    private JList<String> difficultyList;
+    public JList<String> difficultyList;
     private JScrollPane scrollPane;
     
     private final String[] difficultyLevels = {"Very Easy", "Easy", "Normal", "Hard", "Very Hard"};
