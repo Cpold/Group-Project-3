@@ -35,6 +35,12 @@ interface MyConstants {
     static final String FILE_BACK_BUTTON_IMG = PATH + "back_button.png";
     
     static final String SONG1     = PATH + "theme.wav";
+    static final String MUSIC1     = PATH + "music1.wav";
+    static final String MUSIC2     = PATH + "music2.wav";
+    static final String MUSIC3     = PATH + "music3.wav";
+    static final String MUSIC4     = PATH + "music4.wav";
+    static final String MUSIC5     = PATH + "music5.wav";
+    
 
     static final String PAT = "src/main/java/Project3_6713223/resources/game/";
     static final String BG = PAT + "cooking_background.jpg";

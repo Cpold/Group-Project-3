@@ -46,7 +46,7 @@ public class SceneManager {
     private void toggleVolumeIcon(boolean visible) {
         if (mainFrame instanceof MainApplication) {
             try {
-                JButton volumeIcon = ((MainApplication) mainFrame).getVolumeIcon();
+                JButton volumeIcon = mainMenu.getVolumeIcon();
                 if (volumeIcon != null) {
                     volumeIcon.setVisible(visible);
                 }
@@ -123,27 +123,33 @@ public class SceneManager {
                 getMainMenuScene().menuthemeSound.stop();
                 switch (MusicScene.musicGroup.getSelection().getActionCommand()) {
                     case "Chill Jazz (Default)":
-                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.SONG1);
+                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.MUSIC1);
+                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene.volumeSlider.getValue());
                         getMainMenuScene().menuthemeSound.playLoop();
                         break;
                     case "Upbeat Pop":
-                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.SONG1);
+                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.MUSIC2);
+                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene.volumeSlider.getValue());
                         getMainMenuScene().menuthemeSound.playLoop();
                         break;
                     case "Lo-fi Beats":
-                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.SONG1);
+                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.MUSIC3);
+                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene.volumeSlider.getValue());
                         getMainMenuScene().menuthemeSound.playLoop();
                         break;
                     case "Classic Rock":
-                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.SONG1);
+                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.MUSIC4);
+                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene.volumeSlider.getValue());
                         getMainMenuScene().menuthemeSound.playLoop();
                         break;
                     case "8-bit Retro":
-                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.SONG1);
+                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.MUSIC5);
+                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene.volumeSlider.getValue());
                         getMainMenuScene().menuthemeSound.playLoop();
                         break;
                     default:
-                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.SONG1);
+                        getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.MUSIC1);
+                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene.volumeSlider.getValue());
                         getMainMenuScene().menuthemeSound.playLoop();
                         break;
                 } 
@@ -168,8 +174,6 @@ public class SceneManager {
                 mainFrame.setTitle("Pang Ping - Tutorial Guide");
                 tutorialScene.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
                 contentPane.add(tutorialScene);
-                tutorialScene.revalidate();
-                tutorialScene.repaint();
                 break;
             default:
                 System.err.println("Unknown scene: " + sceneName);

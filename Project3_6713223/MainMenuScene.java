@@ -11,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class MainMenuScene extends JPanel implements ActionListener {
     
@@ -18,13 +20,16 @@ public class MainMenuScene extends JPanel implements ActionListener {
     private SceneManager sceneManager;
     public MySoundEffect menuthemeSound;
     
+        // Components สำหรับ Volume Control
+    public JSlider volumeSlider;
+    private JLabel musicLabel;
+    private JButton closeVolumeButton;
+    private JPanel volumeControlPanel;
+    private JButton volumeIcon; 
+    
     // 1. แก้ไข: Constructor ต้องรับ SceneManager
     public MainMenuScene(SceneManager sceneManager) {
         this.sceneManager = sceneManager;
-        
-        menuthemeSound = new MySoundEffect(MyConstants.SONG1); 
-        menuthemeSound.playLoop();
-        menuthemeSound.setVolume(0.5f);
         
         // 1. ตั้งค่าพื้นฐาน
         this.setOpaque(false);
@@ -78,6 +83,8 @@ public class MainMenuScene extends JPanel implements ActionListener {
         // ปุ่ม EXIT
         gbc.gridy = 3;
         this.add(exitButton, gbc);
+        
+        setupVolumeControl();
     }
     
     private JButton createStyledButton(String text, Font font, int width, int height, MyImageIcon icon) {
@@ -113,5 +120,73 @@ public class MainMenuScene extends JPanel implements ActionListener {
         } else if (e.getSource() == exitButton) {
             System.exit(0);
         }
+    }
+    
+        public void setupVolumeControl() {
+        menuthemeSound = new MySoundEffect(MyConstants.SONG1);
+        menuthemeSound.playLoop();
+        menuthemeSound.setVolume(0.5f);
+        // Panel สำหรับ Volume Control (JSlider)
+        volumeControlPanel = new JPanel();
+        volumeControlPanel.setLayout(null); 
+        volumeControlPanel.setOpaque(true); 
+        volumeControlPanel.setBackground(new Color(255, 230, 230, 200));
+        
+        // JSlider
+        volumeSlider = new JSlider(SwingConstants.VERTICAL, 0, 100, 50);
+        volumeSlider.setBounds(50, 20, 50, 150);
+        volumeSlider.setMajorTickSpacing(25);
+        volumeSlider.setPaintTicks(true);
+        volumeSlider.setPaintLabels(true);
+        volumeSlider.setOpaque(true);
+        volumeSlider.setBackground(Color.WHITE);
+        volumeSlider.addChangeListener(e -> {
+            musicLabel.setText("Music : " + volumeSlider.getValue());
+            volumeSlider.repaint();
+        });
+        
+        // Music Label
+        musicLabel = new JLabel("Music : " + volumeSlider.getValue(), SwingConstants.CENTER);
+        musicLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        musicLabel.setBounds(20, 175, 120, 25);
+        musicLabel.setOpaque(true);
+        musicLabel.setBackground(Color.WHITE);
+        
+        // Close Button
+        closeVolumeButton = new JButton("CLOSE");
+        closeVolumeButton.setFont(new Font("Arial", Font.BOLD, 14));
+        closeVolumeButton.setBounds(30, 210, 90, 30);
+        closeVolumeButton.addActionListener(e -> volumeControlPanel.setVisible(false));
+        
+        volumeControlPanel.add(volumeSlider);
+        volumeControlPanel.add(musicLabel);
+        volumeControlPanel.add(closeVolumeButton);
+        
+        int panelWidth = 150;
+        int panelHeight = 250;
+        volumeControlPanel.setBounds(20, 20, panelWidth, panelHeight); 
+        MainApplication.backgroundLabel.add(volumeControlPanel);
+        volumeControlPanel.setVisible(false); 
+        
+        // Volume Icon Button (มุมล่างขวา)
+        volumeIcon = new JButton("");
+        volumeIcon.setIcon(ImageLoader.loadImageIcon(MyConstants.BUTTON_VOLUME_IMG));
+        volumeIcon.setFont(new Font("Arial", Font.BOLD, 24));
+        volumeIcon.setBounds(MyConstants.WIDTH - 80, MyConstants.HEIGHT - 100, 50, 50); 
+        volumeIcon.addActionListener(e -> volumeControlPanel.setVisible(!volumeControlPanel.isVisible()));
+        MainApplication.backgroundLabel.add(volumeIcon);
+        
+        volumeSlider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                menuthemeSound.setVolume(volumeSlider.getValue() / 100.0f);
+            }
+        });
+            
+    }
+        
+    // เมธอดที่ SceneManager ใช้เพื่อเข้าถึงปุ่ม Volume
+    public JButton getVolumeIcon() {
+        return volumeIcon;
     }
 }

@@ -107,6 +107,8 @@ public class EndScene extends JPanel implements ActionListener {
         if (e.getSource() == playAgainButton) {
             // กลับไปหน้า Menu หลัก
             sceneManager.switchToScene("Menu"); 
+            sceneManager.getMainMenuScene().menuthemeSound.stop();
+            sceneManager.getMainMenuScene().setupVolumeControl();
         }
     }
 }

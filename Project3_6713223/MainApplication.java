@@ -14,15 +14,8 @@ import javax.swing.event.ChangeListener;
 
 public class MainApplication extends JFrame{
     
-    private JLabel backgroundLabel;
+    public static JLabel backgroundLabel;
     private SceneManager sceneManager;
-    
-    // Components สำหรับ Volume Control
-    private JSlider volumeSlider;
-    private JLabel musicLabel;
-    private JButton closeVolumeButton;
-    private JPanel volumeControlPanel;
-    private JButton volumeIcon; 
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new MainApplication());
@@ -50,73 +43,7 @@ public class MainApplication extends JFrame{
         MainMenuScene mainMenu = sceneManager.getMainMenuScene();
         mainMenu.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
         backgroundLabel.add(mainMenu);
-        
-        setupVolumeControl();
-
-        volumeSlider.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                mainMenu.menuthemeSound.setVolume(volumeSlider.getValue()/ 100.0f);
-            }
-        });
 
         setVisible(true);
-    }
-    
-    // เมธอดที่ SceneManager ใช้เพื่อเข้าถึงปุ่ม Volume
-    public JButton getVolumeIcon() {
-        return volumeIcon;
-    }
-    
-    private void setupVolumeControl() {
-        // Panel สำหรับ Volume Control (JSlider)
-        volumeControlPanel = new JPanel();
-        volumeControlPanel.setLayout(null); 
-        volumeControlPanel.setOpaque(true); 
-        volumeControlPanel.setBackground(new Color(255, 230, 230, 200));
-        
-        // JSlider
-        volumeSlider = new JSlider(SwingConstants.VERTICAL, 0, 100, 50);
-        volumeSlider.setBounds(50, 20, 50, 150);
-        volumeSlider.setMajorTickSpacing(25);
-        volumeSlider.setPaintTicks(true);
-        volumeSlider.setPaintLabels(true);
-        volumeSlider.setOpaque(true);
-        volumeSlider.setBackground(Color.WHITE);
-        volumeSlider.addChangeListener(e -> {
-            musicLabel.setText("Music : " + volumeSlider.getValue());
-            volumeSlider.repaint();
-        });
-        
-        // Music Label
-        musicLabel = new JLabel("Music : " + volumeSlider.getValue(), SwingConstants.CENTER);
-        musicLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        musicLabel.setBounds(20, 175, 120, 25);
-        musicLabel.setOpaque(true);
-        musicLabel.setBackground(Color.WHITE);
-        
-        // Close Button
-        closeVolumeButton = new JButton("CLOSE");
-        closeVolumeButton.setFont(new Font("Arial", Font.BOLD, 14));
-        closeVolumeButton.setBounds(30, 210, 90, 30);
-        closeVolumeButton.addActionListener(e -> volumeControlPanel.setVisible(false));
-        
-        volumeControlPanel.add(volumeSlider);
-        volumeControlPanel.add(musicLabel);
-        volumeControlPanel.add(closeVolumeButton);
-        
-        int panelWidth = 150;
-        int panelHeight = 250;
-        volumeControlPanel.setBounds(20, 20, panelWidth, panelHeight); 
-        backgroundLabel.add(volumeControlPanel);
-        volumeControlPanel.setVisible(false); 
-        
-        // Volume Icon Button (มุมล่างขวา)
-        volumeIcon = new JButton("");
-        volumeIcon.setIcon(ImageLoader.loadImageIcon(MyConstants.BUTTON_VOLUME_IMG));
-        volumeIcon.setFont(new Font("Arial", Font.BOLD, 24));
-        volumeIcon.setBounds(MyConstants.WIDTH - 80, MyConstants.HEIGHT - 100, 50, 50); 
-        volumeIcon.addActionListener(e -> volumeControlPanel.setVisible(!volumeControlPanel.isVisible()));
-        backgroundLabel.add(volumeIcon);
     }
 }    
