@@ -155,9 +155,12 @@ public class SceneManager {
                 } 
                 
                 mainFrame.setTitle("Pang Ping - Gameplay");
-                if (gameBoard == null) {
-                    gameBoard = new GameBoard(this);
+                if (gameBoard != null) {
+                    gameBoard.stopGame();
                 }
+    
+                gameBoard = new GameBoard(this);
+                gameBoard.resetGame();
                 gameBoard.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
                 contentPane.add(gameBoard);
                 gameBoard.requestFocusInWindow();

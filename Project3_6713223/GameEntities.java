@@ -122,6 +122,10 @@ class Toast {
         bread = null;
         return temp;
     }
+    
+    void clear() {
+        bread = null;
+    }
 }
 
 // ===== TRAY =====
@@ -185,5 +189,10 @@ class Tray {
     
     int getTrayHeight() {
         return slotHeight;
+    }
+    void clear() {
+    for (int i = 0; i < 2; i++) {
+        slots[i] = null;
+    }
     }
 }
