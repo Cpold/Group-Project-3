@@ -124,32 +124,32 @@ public class SceneManager {
                 switch (MusicScene.musicGroup.getSelection().getActionCommand()) {
                     case "Chill Jazz (Default)":
                         getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.MUSIC1);
-                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene.volumeSlider.getValue());
+                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene().volumeSlider.getValue());
                         getMainMenuScene().menuthemeSound.playLoop();
                         break;
                     case "Upbeat Pop":
                         getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.MUSIC2);
-                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene.volumeSlider.getValue());
+                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene().volumeSlider.getValue());
                         getMainMenuScene().menuthemeSound.playLoop();
                         break;
                     case "Lo-fi Beats":
                         getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.MUSIC3);
-                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene.volumeSlider.getValue());
+                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene().volumeSlider.getValue());
                         getMainMenuScene().menuthemeSound.playLoop();
                         break;
                     case "Classic Rock":
                         getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.MUSIC4);
-                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene.volumeSlider.getValue());
+                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene().volumeSlider.getValue());
                         getMainMenuScene().menuthemeSound.playLoop();
                         break;
                     case "8-bit Retro":
                         getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.MUSIC5);
-                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene.volumeSlider.getValue());
+                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene().volumeSlider.getValue());
                         getMainMenuScene().menuthemeSound.playLoop();
                         break;
                     default:
                         getMainMenuScene().menuthemeSound = new MySoundEffect(MyConstants.MUSIC1);
-                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene.volumeSlider.getValue());
+                        getMainMenuScene().menuthemeSound.setVolume(getMainMenuScene().volumeSlider.getValue());
                         getMainMenuScene().menuthemeSound.playLoop();
                         break;
                 } 
