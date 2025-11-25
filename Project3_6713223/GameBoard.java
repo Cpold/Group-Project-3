@@ -79,6 +79,34 @@ class GameBoard extends JPanel implements Runnable,
         this.requestFocusInWindow();
 
     }
+    
+    public void resetGame() {
+    System.out.println("[GameBoard] Resetting game...");
+    
+    servedCount = 0;
+    lives = 5;
+    isBoosting = false;
+    draggingBread = null;
+    isDragging = false;
+    lastLeaveTime = System.currentTimeMillis();
+    
+    toastL.clear();
+    toastR.clear();
+    tray.clear();
+    customers.clear();
+    customers.add(new Customer(550, 90));
+    gameTimer = new GameTimer();
+}
+    public void stopGame() {
+    running = false;
+    try {
+        if (thread != null && thread.isAlive()) {
+            thread.join(1000);
+        }
+    } catch (InterruptedException e) {
+        System.err.println("Error stopping game thread: " + e.getMessage());
+    }
+}
 
     void loadImages() {
         System.out.println("[GameBoard] Loading images...");
@@ -96,6 +124,7 @@ class GameBoard extends JPanel implements Runnable,
         TEAMARIcon = ImageLoader.loadImageIcon(MyConstants.TEAMAR);
         CUSCHIPIcon = ImageLoader.loadImageIcon(MyConstants.CUSCHIP);
         CUSMARIcon = ImageLoader.loadImageIcon(MyConstants.CUSMAR);
+        CUSFOIIcon = ImageLoader.loadImageIcon(MyConstants.CUSFOI);
         uiScoreIcon = ImageLoader.loadImageIcon(MyConstants.UI_SCORE_BG);
         uiHeartIcon = ImageLoader.loadImageIcon(MyConstants.UI_HEART);
         uiClockIcon = ImageLoader.loadImageIcon(MyConstants.UI_CLOCK_BG);
@@ -555,6 +584,7 @@ class GameBoard extends JPanel implements Runnable,
                 && y > binY && y < binY + binSize;
     }
 
+    
     @Override
     public void mouseClicked(MouseEvent e) {}
     @Override

@@ -56,7 +56,7 @@ interface MyConstants {
     static final String CHOCHIP = PAT + "ChocChip.png";
     static final String CHOCFOI = PAT + "ChocFoi.png";
     static final String CHOCMAR = PAT + "ChocMarsh.png";
-    static final String TEACHIP = PAT + "TeaChip.png";
+    static final String TEACHIP = PAT + "Teachip.png";
     static final String TEACFOI = PAT + "TeaFoi.png";
     static final String TEAMAR = PAT + "TeaMarsh.png";
     static final String CUSCHIP = PAT + "CusChip.png";
