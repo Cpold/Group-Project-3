@@ -24,7 +24,7 @@ public class SceneManager {
     private TutorialScene tutorialScene;
     
     // ตัวแปรสำหรับเก็บชื่อผู้เล่น (ใช้ส่งต่อไปยัง EndScene)
-    private String currentPlayerName = "Guest"; 
+    public String currentPlayerName = "Guest"; 
 
     public SceneManager(JFrame mainFrame) {
         this.mainFrame = mainFrame;
@@ -88,7 +88,7 @@ public class SceneManager {
         }
         
         // จัดการ Volume Icon: แสดงปุ่มเฉพาะเมื่ออยู่ในฉาก Menu หรือ Credit เท่านั้น
-        boolean showVolume = sceneName.equals("Menu") || sceneName.equals("Credit");
+        boolean showVolume = sceneName.equals("Menu");
         toggleVolumeIcon(showVolume); 
         
         switch (sceneName) {

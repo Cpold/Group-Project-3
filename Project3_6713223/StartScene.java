@@ -105,7 +105,7 @@ public class StartScene extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirmButton) {
             String playerName = nameInputField.getText().trim();
-            
+            sceneManager.currentPlayerName = playerName;
             if (playerName.isEmpty()) {
                 JOptionPane.showMessageDialog(this, 
                                               "Please enter your name to continue.", 

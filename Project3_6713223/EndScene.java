@@ -76,8 +76,13 @@ public class EndScene extends JPanel implements ActionListener {
     }
 
     private void setupContent() {
-        // **[ปรับแก้ไข]** ลบโค้ดทั้งหมดในเมธอดนี้
-        // ทั้งฉากชนะและแพ้จะไม่มี Title, Subtitle หรือ Image แสดงผลแล้ว
+        if (isWin) {
+            JLabel titleLabel = new JLabel(playerName, SwingConstants.CENTER);
+            titleLabel.setFont(new Font("Arial", Font.BOLD, 32));
+            titleLabel.setForeground(Color.BLACK);
+            titleLabel.setBounds(MyConstants.WIDTH / 2 - 175, 325, 600, 70);
+            backgroundPanel.add(titleLabel);
+        }
     }
     
     private JButton createStyledButton(String text, int width, int height) {
