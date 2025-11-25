@@ -40,7 +40,7 @@ public class Customer {
       
         String[] imgPaths = {
             MyConstants.CUSTOMER_1, MyConstants.CUSTOMER_2, 
-            MyConstants.CUSTOMER_3, MyConstants.CUSTOMER_4,
+            MyConstants.CUSTOMER_3,
             MyConstants.CUSTOMER_5,MyConstants.CUSTOMER_6,
             MyConstants.CUSTOMER_7,MyConstants.CUSTOMER_8,
             MyConstants.CUSTOMER_9
@@ -49,7 +49,7 @@ public class Customer {
         String[] angryPaths = {
            
            MyConstants.CUS_ANGRY_1, MyConstants.CUS_ANGRY_2, 
-            MyConstants.CUS_ANGRY_3, MyConstants.CUS_ANGRY_4,
+            MyConstants.CUS_ANGRY_3, 
             MyConstants.CUS_ANGRY_5, MyConstants.CUS_ANGRY_6,
             MyConstants.CUS_ANGRY_7, MyConstants.CUS_ANGRY_8,
             MyConstants.CUS_ANGRY_9

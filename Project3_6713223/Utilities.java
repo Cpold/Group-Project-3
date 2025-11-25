@@ -69,7 +69,6 @@ interface MyConstants {
     static final String CUSTOMER_1 = PATH + "customer/doctor.png";
     static final String CUSTOMER_2 = PATH + "customer/Tae.png";
     static final String CUSTOMER_3 = PATH + "customer/E3.png";
-    static final String CUSTOMER_4 = PATH + "customer/Art.png";
     static final String CUSTOMER_5 = PATH + "customer/1.png";
     static final String CUSTOMER_6 = PATH + "customer/2.png";
     static final String CUSTOMER_7 = PATH + "customer/3.png";
@@ -79,7 +78,6 @@ interface MyConstants {
     static final String CUS_ANGRY_1 = PATH +"customer/a/0.png";
     static final String CUS_ANGRY_2 = PATH +"customer/a/6.png";
     static final String CUS_ANGRY_3 = PATH +"customer/a/0.png";
-    static final String CUS_ANGRY_4 = PATH +"customer/a/0.png";
     static final String CUS_ANGRY_5 = PATH +"customer/a/1.png";
     static final String CUS_ANGRY_6 = PATH +"customer/a/2.png";
     static final String CUS_ANGRY_7 = PATH +"customer/a/3.png";
