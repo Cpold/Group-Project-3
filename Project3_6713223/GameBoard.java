@@ -245,23 +245,8 @@ class GameBoard extends JPanel implements Runnable,
         System.out.println("No bread available for topping!");
     }
 
-    /*
     @Override
     public void run() {
-        while (running) {
-            updateToasts();
-            updateGameLogic();
-            repaint();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-            }
-        }
-    }
-     */
-    @Override //SMOOT RUM I DONT KNOW WHY
-    public void run() {
-        // กำหนดความเร็วเกมที่ 60 FPS (Frames Per Second)
         double drawInterval = 1000000000 / 60;
         double delta = 0;
         long lastTime = System.nanoTime();
@@ -318,7 +303,7 @@ class GameBoard extends JPanel implements Runnable,
 
         for (Effect_Graphics p : particles) {
             if (!p.update()) {
-                particles.remove(p); // สั่งลบตรงๆ ได้เลย ไม่ต้องใช้ Iterator
+                particles.remove(p);
             }
         }
         for (FloatingText t : texts) {
@@ -517,7 +502,6 @@ class GameBoard extends JPanel implements Runnable,
         int x = toast.x;
         int y = toast.y;
 
-        // Effect 
         if (isBoosting && toast.bread != null && toast.bread.state == Bread.TOASTING) {
             x += (Math.random() * 4) - 2;
             y += (Math.random() * 4) - 2;
@@ -538,21 +522,18 @@ class GameBoard extends JPanel implements Runnable,
                 MyImageIcon resized = iconToDraw.resize(90, 90);
                 g.drawImage(resized.getImage(), x + 10, y + 10, null);
             }
-            // ------------------------------------------------
 
             Graphics2D g2d = (Graphics2D) g;
 
-            // 1.  (BURNT) 
-            if (b.state == Bread.BURNT) {
+            if (b.state == Bread.BURNT) {//toast
                 long time = System.currentTimeMillis();
-                g2d.setColor(new Color(50, 50, 50, 180)); // ควันเทาดำ
+                g2d.setColor(new Color(50, 50, 50, 180));
                 for (int i = 0; i < 5; i++) {
                     int smokeX = x + 30 + (int) (Math.sin(time * 0.008 + i) * 20);
                     int smokeY = y - (int) ((time / 8 + i * 40) % 80);
                     g2d.fillOval(smokeX, smokeY, 15 + i * 2, 15 + i * 2);
                 }
             } 
-            // 2.  (TOASTED) ->  Overlay
             else if (b.state == Bread.TOASTED) {
                 float burnProgress = (float) (b.getProgress() - b.getMaxProgress()) /
                         (b.getBurntLimit() - b.getMaxProgress());
@@ -563,7 +544,6 @@ class GameBoard extends JPanel implements Runnable,
                 g2d.setColor(new Color(100, 50, 0, alpha));
                 g2d.fillRoundRect(x + 10, y + 10, 90, 90, 15, 15);
             } 
-            // 3.(TOASTING) ->  Overlay 
             else if (b.state == Bread.TOASTING) {
                 float progress = (float) b.getProgress() / b.getMaxProgress();
                 int alpha = (int) (progress * 160);
@@ -585,8 +565,7 @@ class GameBoard extends JPanel implements Runnable,
                 }
             }
 
-            // Progress Bar
-            if (b.state == Bread.TOASTING || b.state == Bread.TOASTED) {
+            if (b.state == Bread.TOASTING || b.state == Bread.TOASTED) {//progress bar
                 int barWidth = 80;
                 int barHeight = 10;
                 int barX = x + 10;
@@ -677,41 +656,32 @@ class GameBoard extends JPanel implements Runnable,
     void drawBin(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
-        // เช็คว่า: กำลังลากของอยู่ AND ปลายเมาส์อยู่ที่ถังขยะใช่ไหม?
         boolean isHoveringBin = isDragging && inBin(dragX, dragY);
 
         if (isHoveringBin) {
-            // 🔥 โหมดปีศาจ: ถ้าจะทิ้ง ให้ถังขยะแดง + สั่น
 
-            // 1. สั่นกึกๆ
             int shakeX = (int) (Math.random() * 6) - 3;
-            int size = (int) (binSize * 1.1); // ขยายใหญ่ขึ้น 10%
-            int offset = (size - binSize) / 2; // จัดกึ่งกลาง
+            int size = (int) (binSize * 1.1);
+            int offset = (size - binSize) / 2;
 
-            // 2. วาดพื้นหลังสีแดงจางๆ (Alert Area)
             g2.setColor(new Color(255, 100, 100, 100));
             g2.fillRect(binX - offset + shakeX, binY - offset, size, size);
 
-            // 3. วาดเส้นขอบสีแดงหนาๆ
             g2.setColor(Color.RED);
-            g2.setStroke(new BasicStroke(5)); // เส้นหนา
+            g2.setStroke(new BasicStroke(5));
             g2.drawRect(binX - offset + shakeX, binY - offset, size, size);
 
-            // 4. วาดกากบาท (X) ตรงกลาง
             g2.drawLine(binX, binY, binX + binSize, binY + binSize);
             g2.drawLine(binX + binSize, binY, binX, binY + binSize);
 
-            // (Optional) ใส่ข้อความ "DELETE"
             g2.setFont(new Font("Arial", Font.BOLD, 20));
             g2.drawString("DELETE!", binX + 15, binY - 10);
 
         } else {
-            // 🗑️ โหมดปกติ: ถังขยะนิ่งๆ
             g2.setColor(Color.BLACK);
-            g2.setStroke(new BasicStroke(2)); // เส้นปกติ
+            g2.setStroke(new BasicStroke(2));
             g2.drawRect(binX, binY, binSize, binSize);
 
-            // วาดลายเส้นถังขยะ (เส้นตั้ง 3 เส้น) ให้ดูมีดีเทลนิดนึง
             g2.setStroke(new BasicStroke(1));
             int quarter = binSize / 4;
             g2.drawLine(binX + quarter, binY, binX + quarter, binY + binSize);
@@ -719,12 +689,11 @@ class GameBoard extends JPanel implements Runnable,
             g2.drawLine(binX + quarter * 3, binY, binX + quarter * 3, binY + binSize);
         }
 
-        g2.setStroke(new BasicStroke(1)); // คืนค่าเส้นให้เป็นปกติก่อนจบ
+        g2.setStroke(new BasicStroke(1));
     }
 
     void spawnParticles(int x, int y, Color c) {
         for (int i = 0; i < 15; i++) {
-            // เปลี่ยนจาก new EffectParticle(...) เป็น
             particles.add(new Effect_Graphics(x, y, c));
         }
     }
@@ -736,7 +705,6 @@ class GameBoard extends JPanel implements Runnable,
         }
     }
 
-    // Helper เลือกสีให้ตรงกับแยม
     Color getJamColor(int type) {
         if (type == 0) {
             return new Color(80, 40, 0);   // Choc
@@ -747,7 +715,6 @@ class GameBoard extends JPanel implements Runnable,
         return new Color(255, 255, 150);             // Custard
     }
 
-// Helper เลือกสีให้ตรงกับท็อปปิ้ง
     Color getToppingColor(int type) {
         if (type == 0) {
             return new Color(255, 200, 0); // Foi Thong

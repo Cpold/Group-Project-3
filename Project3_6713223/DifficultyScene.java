@@ -11,8 +11,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 public class DifficultyScene extends JPanel implements ActionListener {
     
@@ -34,7 +32,6 @@ public class DifficultyScene extends JPanel implements ActionListener {
         this.setOpaque(true); 
         this.setBackground(Color.WHITE); 
         
-        // 1. สร้าง JLabel สำหรับรูปภาพพื้นหลังเฟรมไม้
         backgroundPanel = new JLabel();
         MyImageIcon bgIcon = ImageLoader.loadImageIcon(FILE_FRAME_BG);
         if (bgIcon != null) {
@@ -47,18 +44,15 @@ public class DifficultyScene extends JPanel implements ActionListener {
         backgroundPanel.setLayout(null); 
         this.add(backgroundPanel); 
         
-        // 2. สร้าง JList สำหรับเลือกความยาก (5 ตัวเลือก)
         difficultyList = new JList<>(difficultyLevels);
         difficultyList.setFont(new Font("Arial", Font.BOLD, 30)); 
         difficultyList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         difficultyList.setSelectedIndex(2);
         
-        // 2.1 ตั้งค่า Style ให้ JList
         difficultyList.setOpaque(false); 
         difficultyList.setForeground(Color.WHITE); 
         difficultyList.setBackground(new Color(0, 0, 0, 0)); 
         
-        // Custom Renderer
         difficultyList.setCellRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -77,27 +71,21 @@ public class DifficultyScene extends JPanel implements ActionListener {
             }
         });
         
-        // 2.2 ใส่ JList ใน JScrollPane
         scrollPane = new JScrollPane(difficultyList);
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false); 
         scrollPane.setBorder(null); 
         
-        // JList Position: (Y / 2 - 70)
         int listWidth = 350;
         int listHeight = 250;
         scrollPane.setBounds(MyConstants.WIDTH / 2 - 175, MyConstants.HEIGHT / 2 - 70, listWidth, listHeight); 
         backgroundPanel.add(scrollPane);
 
-        // 3. สร้างปุ่ม BACK และ NEXT (ล่องหน)
-        
-        // 3.1 ปุ่ม BACK
         backButton = createStyledButton("BACK", 150, 50);
         backButton.addActionListener(this);
         backButton.setBounds(50, MyConstants.HEIGHT - 120, 150, 50);
         backgroundPanel.add(backButton);
         
-        // ปุ่ม START (เพื่อเริ่มเกมจริง)
         nextButton = createStyledButton("NEXT", 150, 50);
         nextButton.addActionListener(this);
         nextButton.setBounds(MyConstants.WIDTH - 200, MyConstants.HEIGHT - 120, 150, 50);

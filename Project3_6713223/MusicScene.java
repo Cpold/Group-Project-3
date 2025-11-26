@@ -43,25 +43,19 @@ public class MusicScene extends JPanel implements ActionListener {
         this.add(backgroundPanel); 
 
         
-        // Panel สำหรับรวม JRadioButton
         JPanel radioPanel = setupRadioButtons();
         
-        // กำหนดขนาด Panel
-        // 🌟 แก้ไข: เพิ่มความกว้างเพื่อให้พอดีกับข้อความ "Chill Jazz (Default)" 🌟
         int panelWidth = 450; 
         int panelHeight = 300; 
         
-        // 🌟 โค้ดที่แก้ไข: นำค่าชดเชย +30 ออก เพื่อให้ Panel ที่กว้างขึ้นอยู่กึ่งกลางอีกครั้ง (200 คือ Y ที่ถูกเลื่อนขึ้น)
         radioPanel.setBounds(MyConstants.WIDTH / 2 - panelWidth / 2 + 120, 200, panelWidth, panelHeight); 
         backgroundPanel.add(radioPanel);
         
-        // ปุ่ม BACK
         backButton = createStyledButton("BACK", 150, 50);
         backButton.addActionListener(this);
         backButton.setBounds(50, MyConstants.HEIGHT - 120, 150, 50);
         backgroundPanel.add(backButton);
         
-        // ปุ่ม START (เพื่อเริ่มเกมจริง)
         startButton = createStyledButton("START", 150, 50);
         startButton.addActionListener(this);
         startButton.setBounds(MyConstants.WIDTH - 200, MyConstants.HEIGHT - 120, 150, 50);
@@ -70,7 +64,6 @@ public class MusicScene extends JPanel implements ActionListener {
     
     private JPanel setupRadioButtons() {
         JPanel panel = new JPanel();
-        // เพิ่มระยะห่างแนวตั้ง (vgap) เป็น 30 พิกเซล
         panel.setLayout(new GridLayout(musicTitles.length, 1, 0, 30)); 
         panel.setOpaque(false);
         
@@ -78,15 +71,13 @@ public class MusicScene extends JPanel implements ActionListener {
         
         for (int i = 0; i < musicTitles.length; i++) {
             JRadioButton radioBtn = new JRadioButton(musicTitles[i]);
-            // 🌟 NOTE: ปรับ Font.BOLD เป็น Font.PLAIN ถ้าต้องการให้ดูเหมือนในภาพ แต่ใช้ 30
-            // เนื่องจากคุณส่งโค้ดที่ใช้ Font.BOLD, 30 มา ผมจึงรักษาส่วนนี้ไว้
             radioBtn.setFont(new Font("Arial", Font.BOLD, 30));
             radioBtn.setOpaque(false);
             radioBtn.setForeground(Color.WHITE);
-            radioBtn.setActionCommand(musicTitles[i]); // กำหนดคำสั่ง
+            radioBtn.setActionCommand(musicTitles[i]);
             
             if (i == 0) {
-                radioBtn.setSelected(true); // เลือกค่าแรกเป็นค่าเริ่มต้น
+                radioBtn.setSelected(true);
             }
             
             musicGroup.add(radioBtn);
@@ -110,10 +101,10 @@ public class MusicScene extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
-            sceneManager.switchToScene("Difficulty"); // กลับไปหน้าเลือกความยาก
+            sceneManager.switchToScene("Difficulty");
         } else if (e.getSource() == startButton) {
             String selectedMusic = musicGroup.getSelection().getActionCommand();
-            sceneManager.switchToScene("Game"); // เริ่มเกมจริง
+            sceneManager.switchToScene("Game");
         }
     }
 }

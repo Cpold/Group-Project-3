@@ -27,7 +27,6 @@ public class TutorialScene extends JPanel implements ActionListener {
         this.setOpaque(true); // Must be true if backgroundPanel is added on top
         this.setBackground(Color.WHITE);
 
-        // 1. สร้าง JLabel สำหรับรูปภาพพื้นหลัง (Guide Image)
         backgroundPanel = new JLabel();
         MyImageIcon bgIcon = ImageLoader.loadImageIcon(FILE_TUTORIAL_GUIDE);
         if (bgIcon != null) {
@@ -40,7 +39,6 @@ public class TutorialScene extends JPanel implements ActionListener {
         backgroundPanel.setLayout(null);
         this.add(backgroundPanel);
 
-        // 2. ปุ่ม BACK (ใช้รูปภาพและย้ายไปมุมล่างซ้าย)
               backButton = createStyledButton("BACK", 150, 50);
         backButton.addActionListener(this);
         backButton.setBounds(50, MyConstants.HEIGHT - 120, 150, 50);

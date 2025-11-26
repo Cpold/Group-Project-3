@@ -9,8 +9,6 @@ package Project3_6713223;
 
 import javax.swing.*;
 import java.awt.*; 
-import java.awt.event.ActionEvent; 
-import java.awt.event.ActionListener; 
 
 public class SceneManager {
     
@@ -23,7 +21,6 @@ public class SceneManager {
     private MusicScene musicScene;
     private TutorialScene tutorialScene;
     
-    // ตัวแปรสำหรับเก็บชื่อผู้เล่น (ใช้ส่งต่อไปยัง EndScene)
     public String currentPlayerName = "Guest"; 
 
     public SceneManager(JFrame mainFrame) {
@@ -37,12 +34,10 @@ public class SceneManager {
         tutorialScene = new TutorialScene(this); 
     }
     
-    // 1. เมธอดสำหรับ MainApplication เรียกเพื่อดึง Menu Scene
     public MainMenuScene getMainMenuScene() {
         return mainMenu;
     }
 
-    // 2. เมธอดสำหรับซ่อน/แสดง Volume Icon
     private void toggleVolumeIcon(boolean visible) {
         if (mainFrame instanceof MainApplication) {
             try {
@@ -56,15 +51,13 @@ public class SceneManager {
         }
     }
     
-    // 3. เมธอดสำหรับเปลี่ยนไปหน้าจบเกม (EndScene)
     public void showEndScene(boolean isWin, String playerName) {
-        this.currentPlayerName = playerName; // บันทึกชื่อผู้เล่นล่าสุด
+        this.currentPlayerName = playerName;
         
-        // สร้าง EndScene ทุกครั้งเพื่อให้ข้อมูลชื่อ/ผลลัพธ์ถูกต้อง
         EndScene endScene = new EndScene(this, isWin, playerName);
         
         mainFrame.getContentPane().removeAll();
-        toggleVolumeIcon(false); // ซ่อน Volume Icon
+        toggleVolumeIcon(false);
         
         mainFrame.setTitle("Pang Ping - Game Over");
         endScene.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
@@ -87,7 +80,6 @@ public class SceneManager {
             }
         }
         
-        // จัดการ Volume Icon: แสดงปุ่มเฉพาะเมื่ออยู่ในฉาก Menu หรือ Credit เท่านั้น
         boolean showVolume = sceneName.equals("Menu");
         toggleVolumeIcon(showVolume); 
         
@@ -97,21 +89,21 @@ public class SceneManager {
                 mainMenu.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
                 contentPane.add(mainMenu);
                 break;
-            case "StartInput": // ฉากใส่ชื่อ
+            case "StartInput":
                 mainFrame.setTitle("Pang Ping - Enter Name");
                 startInputScene.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
                 contentPane.add(startInputScene);
                 startInputScene.revalidate();
                 startInputScene.repaint();
                 break;
-            case "Difficulty": // ฉากเลือกความยาก
+            case "Difficulty":
                 mainFrame.setTitle("Pang Ping - Select Mode");
                 difficultyScene.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
                 contentPane.add(difficultyScene);
                 difficultyScene.revalidate();
                 difficultyScene.repaint();
                 break;
-            case "Music": // ฉากเลือกเพลง
+            case "Music":
                 mainFrame.setTitle("Pang Ping - Select Music");
                 musicScene.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
                 contentPane.add(musicScene);
@@ -164,9 +156,6 @@ public class SceneManager {
                 gameBoard.setBounds(0, 0, MyConstants.WIDTH, MyConstants.HEIGHT);
                 contentPane.add(gameBoard);
                 gameBoard.requestFocusInWindow();
-                // **ตัวอย่างการเรียก End Scene (ให้เรียกใน GameBoard เมื่อเกมจบ)**
-                // if (isWinner) showEndScene(true, currentPlayerName); 
-                // else showEndScene(false, currentPlayerName);
                 break;
             case "Credit": 
                 mainFrame.setTitle("Pang Ping - Credits");

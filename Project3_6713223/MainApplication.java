@@ -8,9 +8,6 @@
 package Project3_6713223;
 
 import javax.swing.*;
-import java.awt.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 public class MainApplication extends JFrame{
     

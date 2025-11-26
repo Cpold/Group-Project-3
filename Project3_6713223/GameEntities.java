@@ -106,15 +106,11 @@ class Bread {
         String jamName = "";
         String topName = "";
         
-        // แปลง jamType (0,1,2) เป็นชื่อ
         if (jamType == 0) jamName = "Chocolate";
         else if (jamType == 1) jamName = "Thai Tea";
-        else if (jamType == 2) jamName = "Custard"; // สังขยา
+        else if (jamType == 2) jamName = "Custard";
         else return "Plain Toast";
 
-        // แปลง toppingType (0,1,2) เป็นชื่อ
-        // 0=FoiThong(Banana?), 1=Chip, 2=Marshmallow 
-        // (อิงตามไฟล์รูป CUSFOI, CUSCHIP ใน Utilities)
         if (toppingType == 0) topName = "Foi Thong"; 
         else if (toppingType == 1) topName = "Choc Chip";
         else if (toppingType == 2) topName = "Marshmallow";

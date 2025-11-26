@@ -9,13 +9,12 @@ package Project3_6713223;
 
 public class GameTimer {
     private long startTime;
-    private long timeLimit;      // เวลาจำกัด (วินาที)
-    private long timeRemaining;  // เวลาที่เหลือ (วินาที)
+    private long timeLimit;
+    private long timeRemaining;
     private boolean isTimeUp;
     private String difficulty;
 
     public GameTimer(SceneManager s) {
-        // ค่าเริ่มต้น
         setDifficulty(s.difficultyScene.difficultyList.getSelectedValue());
     }
 
@@ -40,17 +39,16 @@ public class GameTimer {
             default:
                 this.timeLimit = 60;
         }
-        reset(); // รีเซ็ตเวลาใหม่ทุกครั้งที่ตั้งค่า
+        reset();
     }
 
-    // เริ่มจับเวลาใหม่
     public void reset() {
         this.startTime = System.currentTimeMillis();
         this.isTimeUp = false;
         this.timeRemaining = timeLimit;
     }
 
-    // เมธอดสำหรับอัปเดตเวลา (เรียกใน Game Loop)
+    //Game Loop
     public void update() {
         if (isTimeUp) return;
 

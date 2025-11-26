@@ -8,7 +8,6 @@
 package Project3_6713223;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 
 public class Effect_Graphics {

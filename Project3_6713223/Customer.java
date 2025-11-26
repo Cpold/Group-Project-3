@@ -24,7 +24,6 @@ public class Customer {
     private long patienceTime = 20000;
     public boolean penaltyApplied = false;
 
- //(Poke)
     private String chatText = "";
     private long chatTimer = 0;
     private long nextComplainTime = 0;
@@ -47,9 +46,7 @@ public class Customer {
            ,
         "<3 <3 <3"
     };
-    // ------------------------------------
-
-    // Menu
+   
     private static final String[] MENU_LIST = {
         "Custard Choc Chip Toast", "Custard Foi Thong Toast", "Custard Marshmallow Toast",
         "Chocolate Choc Chip Toast", "Chocolate Foi Thong Toast", "Chocolate Marshmallow Toast",
@@ -124,14 +121,11 @@ public class Customer {
         } else if (icon != null) {
             g.drawImage(icon.getImage(), x, y, null);
 if (System.currentTimeMillis() > nextComplainTime) {
-                // สุ่มคำบ่นใหม่
                 Random r = new Random();
                 this.chatText = complainLines[r.nextInt(complainLines.length)];
                 
-                // โชว์ข้อความนาน 2.5 วินาที
                 this.chatTimer = System.currentTimeMillis() + 2500;
                 
-                // ตั้งเวลาบ่นครั้งถัดไป (สุ่มอีก 4-9 วินาที)
                 this.nextComplainTime = System.currentTimeMillis() + 4000 + r.nextInt(5000);
             }
             
@@ -152,7 +146,6 @@ if (System.currentTimeMillis() > nextComplainTime) {
     
   
    private void drawOrderBubble(Graphics g) {
-        // ขยายความกว้างกล่องหน่อยนะครับ เพราะคำว่า Topping ... Toast มันยาว
         int bubbleW = 250; 
         int bubbleX = x + 130; 
         int bubbleY = y - 20;
@@ -160,7 +153,6 @@ if (System.currentTimeMillis() > nextComplainTime) {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        // 1. วาดกล่อง (เหมือนเดิม)
         g2.setColor(new Color(0, 0, 0, 50));
         g2.fillRoundRect(bubbleX + 5, bubbleY + 5, bubbleW, bubbleH, 15, 15);
         
@@ -172,22 +164,18 @@ if (System.currentTimeMillis() > nextComplainTime) {
         g2.drawRoundRect(bubbleX, bubbleY, bubbleW, bubbleH, 15, 15);
         g2.setStroke(new BasicStroke(1));
 
-        // หัวข้อ
         g2.setColor(new Color(100, 60, 20));
         g2.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
         g2.drawString("Order Ticket #1", bubbleX + 15, bubbleY + 25);
         
         g2.setColor(new Color(200, 180, 150));
         g2.drawLine(bubbleX + 10, bubbleY + 30, bubbleX + bubbleW - 10, bubbleY + 30);
-
-        // --- 🔥 แยกบรรทัดแบบล็อคคำ (Manual Split) 🔥 ---
+        
         String line1 = "";
         String line2 = "";
 
-        // เช็คชื่อแยม เพื่อแยกบรรทัดที่ 1
         if (orderName.startsWith("Custard")) {
             line1 = "Custard";
-            // เอาส่วนที่เหลือ (Foi Thong Toast) มาใส่บรรทัด 2
             line2 =  orderName.substring(8); 
         } 
         else if (orderName.startsWith("Chocolate")) {
@@ -198,9 +186,7 @@ if (System.currentTimeMillis() > nextComplainTime) {
             line1 = "Thai Tea";
             line2 = orderName.substring(9);
         }
-        // ------------------------------------------------
-
-        // วาดบรรทัดที่ 1 (ชื่อแยม) - สีตามรสชาติ
+        
         g2.setFont(new Font("Arial", Font.BOLD, 18));
         if (line1.equals("Chocolate")) g2.setColor(new Color(101, 67, 33));
         else if (line1.equals("Thai Tea")) g2.setColor(new Color(210, 105, 30)); 
@@ -208,9 +194,8 @@ if (System.currentTimeMillis() > nextComplainTime) {
         
         g2.drawString(line1, bubbleX + 15, bubbleY + 55);
         
-        // วาดบรรทัดที่ 2 (Topping ...) - สีเทาเข้ม/ดำ
-        g2.setFont(new Font("Arial", Font.BOLD, 14)); // ปรับตัวหนาให้อ่านง่าย
-        g2.setColor(Color.DARK_GRAY); // หรือ new Color(80, 50, 20) ถ้าอยากได้สีน้ำตาล
+        g2.setFont(new Font("Arial", Font.BOLD, 14));
+        g2.setColor(Color.DARK_GRAY);
         g2.drawString(line2, bubbleX + 15, bubbleY + 80);
     }
 
